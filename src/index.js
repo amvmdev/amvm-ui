@@ -4,7 +4,6 @@ import FormGroup from './controls/FormGroup';
 import Checkbox from './controls/Checkbox';
 import Textbox from './controls/Textbox';
 import Dropdown from './controls/Dropdown';
-import DropZone from './controls/DropZone';
 import Spinner from './controls/Spinner';
 import ControlLabel from './controls/ControlLabel';
 import TextboxMeta from './controls/TextboxMeta';
@@ -17,7 +16,6 @@ import FormGroupCheckbox from './controls/FormGroupCheckbox';
 import FormGroupCheckboxMeta from './controls/FormGroupCheckboxMeta';
 import FormGroupDropdown from './controls/FormGroupDropdown';
 import FormGroupDropdownMeta from './controls/FormGroupDropdownMeta';
-import FormError from './controls/FormError';
 import DatePicker from './controls/DatePicker';
 
 export {
@@ -39,6 +37,5 @@ export {
     FormGroupDropdown,
     FormGroupDropdownMeta,    
     DatePicker,
-    DropZone,
     Spinner
 }
