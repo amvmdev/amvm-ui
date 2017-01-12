@@ -1,24 +1,32 @@
 import React from 'react';
 
 const FormGroup = (props) => {
-    const {
-        success, 
-        error, 
-        warning, 
-        children,
-        ...other
-    } = props;
 
-    let className = "";
-    if(success) 
-        className = "has-success";
-    else if(warning)
-        className = "has-warning";
-    else if(error)
-        className = "has-error";
+    const {
+        success,
+        error,
+        warning,
+        children,
+        ...sourceProps
+    } = props;
     
+
+    
+    let className = "";
+    if (success)
+        className = "has-success";
+    else if (warning)
+        className = "has-warning";
+    else if (error)
+        className = "has-error";
+
+    if(sourceProps.className) {
+        className += ' ' + sourceProps.className;
+        delete sourceProps.className;
+    }
+
     return (
-        <div className={"form-group " + className} {...other}>{children}</div>
+        <div className={"form-group " + className} {...sourceProps}>{children}</div>
     );
 }
 

@@ -1,70 +1,45 @@
 import React from 'react';
-import FormFieldError from './FormFieldError';
+import InputError from './InputError';
 import Dropdown from './Dropdown';
 
-
-/*
-    values parameter must be array of objects of following shape:
-    { value: xxxx, text: 'yyyy'}
-    Where value should be uniqure value in array
-*/
 const FormGroupDropdown = (props) => {
     const {
-        name,
-        label,
-        value,
-        values,
-        optionsLabel,
-        required,        
-        onChange,
-        onBlur,
-        errors,
-        ...other
+        meta,
+        refFn,
+        children,        
+        parentStyle,
+        labelText,
+        ...sourceProps
     } = props;
+    
+    let targetProps = Object.assign({}, sourceProps);     
+    
+    let formGroupState = (meta && meta.errors.length > 0) ? 'has-error' : ''; // can be has-error, has-warning, has-success
+    let htmlFor = targetProps.id ? targetProps.id : (meta && meta.name ? meta.name : '');
+    let labelTextToDisplay = labelText ? labelText : (meta && meta.title ? meta.title : '');
 
 
-    let wrapperClass = 'form-group';
-    if (errors && errors.length > 0) {
-        wrapperClass += " has-error";
-    }
-
-    let options = [];
-    // if there is options label, add it to the list
-    if(optionsLabel) {
-        // WARNING: value of 'set-null' will be processed in base-component.js
-        options.push(<option value='set-null' key={-99999}>{optionsLabel}</option>);
-    }
-    values.forEach((value) => {
-        options.push(<option value={value.value} key={value.value}>{value.text}</option>);
-    });
-
-
+      
     return (
-        <div className={wrapperClass} {...other}>
-            <label htmlFor={name}>{label}</label>
-            {required === true ? <span className="required"> *</span> : null}
-            <Dropdown value={value} name={name} onChange={onChange} onBlur={onBlur}>{options}</Dropdown>
-            <FormFieldError msg={errors} />
+        <div className={'form-group ' + formGroupState} style={parentStyle}>
+            <label htmlFor={htmlFor} className="control-label">{labelTextToDisplay}</label>
+            {(meta && meta.required) ? <span className="required"> *</span> : null}
+            <Dropdown meta={meta} refFn={refFn} {...targetProps}>{children}</Dropdown>
+            <InputError error={meta ? meta.errors : null} />
         </div>
     );
 }
 
 FormGroupDropdown.propTypes = {
-    name: React.PropTypes.string.isRequired,
-    label: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string,
-    values: React.PropTypes.array.isRequired,
+    meta: React.PropTypes.object,  
+    source: React.PropTypes.array,
+    valueField: React.PropTypes.string,
+    textField: React.PropTypes.string,
     optionsLabel: React.PropTypes.string,
-    required: React.PropTypes.bool,
-    onChange: React.PropTypes.func.isRequired,
-    onBlur: React.PropTypes.func,
-    errors: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.array
-    ])
+    labelText: React.PropTypes.string,
+    parentStyle: React.PropTypes.object,
+    refFn: React.PropTypes.func,
 };
 
-FormGroupDropdown.defaultProps = {
-};
 
 export default FormGroupDropdown;
