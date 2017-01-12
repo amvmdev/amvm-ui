@@ -1,7 +1,7 @@
 {
   "name": "amvm-ui",
   "main": "build/index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "amvm library of React components",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "url": "https://github.com/amvmdev/amvm-ui/issues"
   },
   "homepage": "https://github.com/amvmdev/amvm-ui",
-  "keywords": [    
+  "keywords": [
     "react"
   ],
   "options": {
