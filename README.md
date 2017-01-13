@@ -76,7 +76,10 @@ textField | no | Name of object property that will be used as a content when bui
 optionsLabel | no | If set, it will be first `<option>` with value of `set-null` and key of `-99999` when building `<option>` tag using `source` prop
 refFn | no | Ref callback function. This function will be assign to `ref` prop on `<input/>` element.
 
-If `<Dropdown>` component has `children` prop, then `source`, `valueField`, `textField` and `optionsLabel` props will **NOT** be used to build `<option>` tags.
+This is the order on how dropdown will build `<option>` tags:
+1. If there are children for `<Dropdown>` component, they will be used as dropdown options.
+2. If meta has `dropdownValues` property, then this property will be looped and for each array item `<option>` will be created. Each array item should be object of type `{ value: 'xx', text: 'yy' }`
+3. If dropdown has `source`, `valueField`, `textField`, then these props will be used to create `<option>` tags.
 
 
 ### FormGroupDropdown
