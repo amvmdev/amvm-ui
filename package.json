@@ -1,7 +1,7 @@
 {
   "name": "amvm-ui",
   "main": "build/index.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "amvm library of React components",
   "repository": {
     "type": "git",
