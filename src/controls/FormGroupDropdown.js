@@ -14,7 +14,7 @@ const FormGroupDropdown = (props) => {
     
     let targetProps = Object.assign({}, sourceProps);     
     
-    let formGroupState = (meta && meta.errors.length > 0) ? 'has-error' : ''; // can be has-error, has-warning, has-success
+    let formGroupState = (meta && meta.errors && meta.errors.length > 0) ? 'has-error' : ''; // can be has-error, has-warning, has-success
     let htmlFor = targetProps.id ? targetProps.id : (meta && meta.name ? meta.name : '');
     let labelTextToDisplay = labelText ? labelText : (meta && meta.title ? meta.title : '');
 
