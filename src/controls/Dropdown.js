@@ -32,6 +32,12 @@ const Dropdown = (props) => {
 
     if (children) {
         return (<select ref={refFn} {...targetProps}>{children}</select>);
+    } else if(meta && meta.dropdownValues) {
+        let options = [];
+        meta.dropdownValues.forEach(item => {            
+            options.push(<option value={item.value} key={item.value}>{item.text}</option>);
+        });
+        return (<select ref={refFn} {...targetProps}>{options}</select>);
     } else if (source && valueField && textField) {
         let options = [];
         if (optionsLabel) {
