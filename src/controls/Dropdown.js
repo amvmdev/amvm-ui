@@ -30,6 +30,9 @@ const Dropdown = (props) => {
     targetProps.id = sourceProps.id ? sourceProps.id : targetProps.id;
     targetProps.value = sourceProps.value ? sourceProps.value : targetProps.value;
 
+    // value cannot be null
+    targetProps.value = targetProps.value ? targetProps.value : '';
+
     if (children) {
         return (<select ref={refFn} {...targetProps}>{children}</select>);
     } else if(meta && meta.dropdownValues) {
